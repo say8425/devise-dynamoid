@@ -1,0 +1,53 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - Rakefile
+    - config.ru
+    - bin/*
+  NewCops: enable
+require:
+  - rubocop-performance
+# Migration Files could be fit with other options by spacing
+Layout/ExtraSpacing:
+  Exclude:
+    - db/migrate/*.rb
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - config/initializers/devise.rb
+# Devise layout config has proc variable not lintable.
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - config/initializers/devise.rb
+Metrics/AbcSize:
+  Max: 50
+  Exclude:
+    - db/migrate/*.rb
+# Environment and application config are essentially long.
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
+    - config/application.rb
+    - app/admin/*.rb
+Metrics/ClassLength:
+  Max: 1500
+  Exclude:
+    - db/migrate/*.rb
+Metrics/MethodLength:
+  Max: 120
+  Exclude:
+    - db/migrate/*.rb
+Style/Documentation:
+  Enabled: false
+# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Style/CommentAnnotation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Exclude:
+    - test/test_helper.rb
+# We do not need to support Ruby 1.9, so this is good to use.
+Style/SymbolArray:
+  Enabled: true
+# Non English can be used for comment
+Style/AsciiComments:
+  Enabled: false
